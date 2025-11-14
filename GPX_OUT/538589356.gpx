@@ -1,0 +1,22 @@
+<gpx xmlns:ns3="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns2="http://www.garmin.com/xmlschemas/GpxExtensions/v3" creator="Garmin Connect" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/11.xsd">
+  <extensions>
+<distance>2758.73</distance>
+<average_hr>132.0</average_hr>
+<average_speed>2.3910000324249268</average_speed>
+<start_time>2025-11-13T08:32:04+00:00</start_time>
+<end_time>2025-11-13T08:51:17.941000+00:00</end_time>
+<moving_time>1140.0</moving_time>
+<elapsed_time>1159.65</elapsed_time>
+</extensions>
+<metadata>
+    <link href="connect.garmin.com">
+      <text>Garmin Connect</text>
+    </link>
+    <time>2025-11-13T08:32:04.000Z</time>
+  </metadata>
+  <trk>
+    <name>恢复</name>
+    <type>running</type>
+    <trkseg/>
+  </trk>
+</gpx>
