@@ -1,8 +1,9 @@
 # Sync Scripts Simplification Design
 
 **Date:** 2026-03-17
-**Status:** Approved
+**Status:** Spec Reviewed - Approved
 **Author:** Claude
+**Reviewer:** Spec Review Agent
 
 ## Overview
 
@@ -99,32 +100,53 @@ paths:
 ## Implementation Steps
 
 ```bash
-# 1. Delete unused sync scripts
-rm run_page/nike_sync.py run_page/nike_to_strava_sync.py
-rm run_page/strava_sync.py run_page/strava_to_garmin_sync.py
-rm run_page/coros_sync.py
-rm run_page/keep_sync.py run_page/keep_to_strava_sync.py
-rm run_page/endomondo_sync.py
-rm run_page/joyrun_sync.py
-rm run_page/igpsport_sync.py
-rm run_page/oppo_sync.py
-rm run_page/onelap_sync.py
-rm run_page/tulipsport_sync.py
-rm run_page/komoot_sync.py
-rm run_page/codoon_sync.py
-rm run_page/garmin_to_strava_sync.py
-rm run_page/garmin_sync_cn_global.py
-rm run_page/tcx_to_garmin_sync.py
-rm run_page/tcx_to_strava_sync.py
-rm run_page/gpx_to_strava_sync.py
-rm run_page/garmin_device_adaptor.py
+# 1. Delete unused sync scripts (21 files)
+cd run_page
+rm nike_sync.py nike_to_strava_sync.py
+rm strava_sync.py strava_to_garmin_sync.py
+rm coros_sync.py
+rm keep_sync.py keep_to_strava_sync.py
+rm endomondo_sync.py
+rm joyrun_sync.py
+rm igpsport_sync.py
+rm oppo_sync.py
+rm onelap_sync.py
+rm tulipsport_sync.py
+rm komoot_sync.py
+rm codoon_sync.py
+rm garmin_to_strava_sync.py
+rm garmin_sync_cn_global.py
+rm tcx_to_garmin_sync.py
+rm tcx_to_strava_sync.py
+rm gpx_to_strava_sync.py
+rm garmin_device_adaptor.py
 
 # 2. Update .github/workflows/run_data_sync.yml
+#    - Update env.RUN_TYPE comment to list only: garmin_cn/garmin/only_gpx/only_tcx/only_fit/db_updater
+#    - Update paths trigger (lines ~10-24) to only include retained scripts
+#    - Remove sync steps for: nike, nike_to_strava, strava, coros, keep, keep_to_strava,
+#      garmin, garmin_cn (re-add with simplified form), garmin_sync_cn_global,
+#      only_gpx (re-add), only_tcx (re-add), strava_to_garmin, strava_to_garmin_cn,
+#      garmin_to_strava, garmin_to_strava_cn, tulipsport, oppo, db_updater (re-add)
+#    - Keep SVG generation steps unchanged
 
 # 3. Update README.md
+#    - Remove sections: Nike sync, Strava sync, Coros sync, Keep sync, and other platforms
+#    - Keep sections: Garmin sync (CN + Global), local file sync (GPX/TCX/FIT), frontend development
+#    - Update RUN_TYPE comment in workflow example
 
 # 4. Commit changes
+git add -A
+git commit -m "Simplify: Remove unused platform sync scripts"
 ```
+
+## Dependency Cleanup
+
+**Remove from `pyproject.toml`:**
+- `stravalib==0.10.4` - Strava API client
+- `stravaweblib` - Strava web scraping
+
+**Keep:** All other dependencies (used by Garmin sync, GPX/TCX/FIT parsing, SVG generation)
 
 ## Optional Follow-up
 
